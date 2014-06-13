@@ -14,28 +14,18 @@ class Transakcje extends CI_Controller {
     public function index(){
 
 
-        echo "Transakcje";
 
 
        // $data['query'] = $this->transakcjamodel->get_last();
 
         $data['kontrachenci'] = $this->db->get('kontrachenci')->result();
-        $data['sprzedaze'] = $this->db->get('sprzedaze')->result();
-        $data['transakcje'] = $this->db->get('transakcje')->result();
-        $data['zakupy'] = $this->db->get('zakupy')->result();
+        $data['transakcjex'] = $this->db->get('transakcje')->result();
 
 
 
 
 
-
-
-
-
-
-
-
-
+        $data['transakcje'] = $this->transakcje_model->get_transakcje();
 
 
 
@@ -47,5 +37,31 @@ class Transakcje extends CI_Controller {
 
 
     }
+
+
+
+    function add(){
+
+
+        if($_POST){
+
+
+            $this->db->insert('transakcje',$_POST);
+
+            redirect(site_url(''));
+
+
+        }else{
+
+
+        $this->load->view('main_view');
+        $this->load->view('transakcje_add_view');
+
+        }
+
+
+    }
+
+
 
 }
