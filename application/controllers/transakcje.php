@@ -21,6 +21,21 @@ class Transakcje extends CI_Controller {
 
         $data['kontrachenci'] = $this->db->get('kontrachenci')->result();
         $data['sprzedaze'] = $this->db->get('sprzedaze')->result();
+        $data['transakcje'] = $this->db->get('transakcje')->result();
+        $data['zakupy'] = $this->db->get('zakupy')->result();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
