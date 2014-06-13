@@ -17,7 +17,8 @@ class transakcjamodel extends CI_Model{
 
     function get_last(){
 
-        $query = $this->db->get('entries',1);
+        $query = $this->db->get('kontrachenci');
+
 
         return $query->result();
 
