@@ -16,15 +16,27 @@ class Kontrachenci extends CI_Controller {
 
 
 
+        if($_POST){
+
+
+            $this->db->where('id_kontrachenta', $_POST['id_kontrachenta']);
+            $this->db->update('kontrachenci',$_POST);
+
+            redirect(site_url('kontrachenci/view'));
+
+
+
+        }else{
+
         $this->db->where('id_kontrachenta',$id_kontrachenta);
         $data['kontrachent'] = $this->db->get('kontrachenci')->row();
 
 
 
         $this->load->view('main_view');
-        $this->load->view('kontrachenci_edit',$data);
+        $this->load->view('kontrachenci_edit_view',$data);
 
-
+        }
 
     }
 
@@ -33,13 +45,24 @@ class Kontrachenci extends CI_Controller {
 
     function add(){
 
+
+        if($_POST){
+
+            $this->db->insert('kontrachenci',$_POST);
+
+            redirect(site_url('kontrachenci/view'));
+
+        }else{
+
+
         $this->load->view('main_view');
         $this->load->view('kontrachenci_add_view');
         $this->load->view('footer_view');
 
-    }
 
+        }
 
+   }
 
     function view(){
 
@@ -52,6 +75,24 @@ class Kontrachenci extends CI_Controller {
 
 }
 
+
+
+
+
+    function delete($id_kontrachenta){
+
+
+            $this->db->where('id_kontrachenta', $id_kontrachenta);
+            $this->db->delete('kontrachenci');
+
+            echo("xxx");
+            //redirect(site_url('kontrachenci/view'));
+
+
+
+
+
+    }
 
 
 }

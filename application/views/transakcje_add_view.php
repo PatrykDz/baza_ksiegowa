@@ -1,4 +1,4 @@
-<h2 class="sub-header">Dodaj transakcje</h2>
+<h2 class="sub-header" style="padding-left:10px">Dodaj transakcje</h2>
 
 
 <div class="col-sm-9  col-md-8">
@@ -37,8 +37,30 @@
         <label for="inputPassword">Kontrachent</label>
 
         <select class="form-control" id="kontrachenci_id_kontrachenta "name="kontrachenci_id_kontrachenta">
-            <option value="0">0</option>
-            <option value="1">1</option>
+
+
+            <?php
+                foreach($kontrachenci as $kontrachent){ ?>
+
+
+                echo($kontrachent->id_kontrachenta);
+
+                    <option value="<?php echo($kontrachent->id_kontrachenta); ?> ">
+                            <?php echo($kontrachent->imie." ".$kontrachent->nazwisko) ?></option>
+
+
+
+          <?php  }
+
+            ?>
+
+
+
+
+
+
+
+
 
         </select>
 

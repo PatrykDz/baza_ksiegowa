@@ -9,6 +9,14 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
 
+
+    <link href="<?php echo(base_url().'assets/tablesorter/')?>css/theme.bootstrap.css" rel="stylesheet">
+    <script src="<?php echo(base_url().'assets/tablesorter/')?>js/jquery.tablesorter.min.js"></script>
+    <script src="<?php echo(base_url().'assets/tablesorter/')?>js/jquery.tablesorter.widgets.min.js"></script>
+
+
+
+
 </head>
 <body>
 
@@ -33,7 +41,7 @@
             <a class="navbar-brand" href="#">Soma System - Baza</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
+         <!--   <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Dashboard</a></li>
                 <li><a href="#">Settings</a></li>
                 <li><a href="#">Profile</a></li>
@@ -42,6 +50,7 @@
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search...">
             </form>
+            -->
         </div>
     </div>
 </div>
@@ -101,7 +110,7 @@
 
 
 
-    <div class="col-sm-9  col-md-10 main" style="padding-left:100px">
+    <div class="col-sm-9  col-md-10 main" style="padding-left:80px">
 
 
 

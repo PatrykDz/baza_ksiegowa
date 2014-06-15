@@ -1,17 +1,18 @@
 
 
-<h2 class="sub-header">Kontrachenci</h2>
+<h2 class="sub-header"style="padding-left:10px">Kontrachenci</h2>
 <div class="table-responsive">
     <table id="zlecenia" class="table table-stripped">
         <thead>
 
         <tr>
-            <th>Id kontrachenta</th>
+            <th>ID</th>
             <th>Imię</th>
             <th>Nazwisko</th>
             <th>E-mail</th>
             <th>Numer telefonu</th>
             <th>Adres</th>
+            <th></th>
 
         </tr>
         </thead>
@@ -50,6 +51,19 @@
 
 </div>
 
+
+<!-- WAŻNE -->
+<script>
+    $(function(){
+        $('table').tablesorter({
+            theme: 'bootstrap',
+            widgets        : ['zebra', 'columns'],
+            usNumberFormat : false,
+            sortReset      : true,
+            sortRestart    : true
+        });
+    });
+</script>
 
 
 

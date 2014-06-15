@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2014 at 07:57 PM
+-- Generation Time: Jun 14, 2014 at 11:11 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -54,14 +54,14 @@ CREATE TABLE IF NOT EXISTS `transakcje` (
   `id_transakcji` int(11) NOT NULL AUTO_INCREMENT,
   `nazwa_transakcji` varchar(100) COLLATE utf8_polish_ci DEFAULT NULL,
   `opis_transakcji` varchar(300) COLLATE utf8_polish_ci DEFAULT NULL,
-  `zakup_netto` decimal(10,0) DEFAULT NULL,
-  `zakup_brutto` decimal(10,0) DEFAULT NULL,
+  `zakup_netto` decimal(10,2) DEFAULT NULL,
+  `zakup_brutto` decimal(10,2) DEFAULT NULL,
   `data_zakupu` date DEFAULT NULL,
-  `sprzedaz_netto` decimal(10,0) DEFAULT NULL,
-  `sprzedaz_brutto` decimal(10,0) DEFAULT NULL,
+  `sprzedaz_netto` decimal(10,2) DEFAULT NULL,
+  `sprzedaz_brutto` decimal(10,2) DEFAULT NULL,
   `data_sprzedazy` date DEFAULT NULL,
-  `koszty_allegro` decimal(10,0) DEFAULT NULL,
-  `koszty_inne` decimal(10,0) DEFAULT NULL,
+  `koszty_allegro` decimal(10,2) DEFAULT NULL,
+  `koszty_inne` decimal(10,2) DEFAULT NULL,
   `kontrachenci_id_kontrachenta` int(11) NOT NULL,
   PRIMARY KEY (`id_transakcji`),
   KEY `fk_transakcje_kontrachenci_idx` (`kontrachenci_id_kontrachenta`)
@@ -72,10 +72,10 @@ CREATE TABLE IF NOT EXISTS `transakcje` (
 --
 
 INSERT INTO `transakcje` (`id_transakcji`, `nazwa_transakcji`, `opis_transakcji`, `zakup_netto`, `zakup_brutto`, `data_zakupu`, `sprzedaz_netto`, `sprzedaz_brutto`, `data_sprzedazy`, `koszty_allegro`, `koszty_inne`, `kontrachenci_id_kontrachenta`) VALUES
-(1, 'Laptop HP ProBook 1425', 'Nowy kupiony i sprzedany', '800', '1000', '2014-06-15', '1000', '1200', '2014-06-14', '5', '5', 1),
-(2, 'Laptop Dell 1422', 'OK', '1000', '1200', '2014-06-15', '800', '1000', '2014-06-17', '5', '1', 2),
-(4, 'Laptop DELL Z500', 'Lekko uszkodzony', '1000', NULL, '2014-01-01', '1200', NULL, '2014-01-02', NULL, '5', 1),
-(6, 'DELL BBB88', 'OK', '800', '984', '2014-01-01', '1200', '1476', '2014-01-02', '24', '10', 1);
+(1, 'Laptop HP ProBook 1425', 'Nowy kupiony i sprzedany', '800.00', '1000.00', '2014-06-15', '1000.00', '1200.00', '2014-06-14', '5.00', '5.00', 1),
+(2, 'Laptop Dell 1422', 'OK', '1000.00', '1200.00', '2014-06-15', '800.00', '1000.00', '2014-06-17', '5.00', '1.00', 2),
+(4, 'Laptop DELL Z500', 'Lekko uszkodzony', '1000.00', NULL, '2014-01-01', '1200.00', NULL, '2014-01-02', NULL, '5.00', 1),
+(6, 'DELL BBB88', 'OK', '800.00', '984.00', '2014-01-01', '1200.00', '1476.00', '2014-01-02', '24.00', '10.00', 1);
 
 -- --------------------------------------------------------
 

@@ -22,9 +22,6 @@ class Transakcje extends CI_Controller {
         $data['transakcjex'] = $this->db->get('transakcje')->result();
 
 
-
-
-
         $data['transakcje'] = $this->transakcje_model->get_transakcje();
 
 
@@ -33,15 +30,11 @@ class Transakcje extends CI_Controller {
 
         $this->load->view('transakcje_view',$data);
 
-
-
-
     }
 
 
 
     function add(){
-
 
         if($_POST){
 
@@ -54,13 +47,63 @@ class Transakcje extends CI_Controller {
         }else{
 
 
+
+
+        $data['kontrachenci'] = $this->db->get('kontrachenci')->result();
+
         $this->load->view('main_view');
-        $this->load->view('transakcje_add_view');
+        $this->load->view('transakcje_add_view',$data);
 
         }
 
 
     }
+
+
+
+    function edit($id_transakcji){
+
+        if($_POST){
+
+
+            $this->db->where('id_transakcji', $_POST['id_transakcji']);
+            $this->db->update('transakcje',$_POST);
+
+            redirect(site_url(''));
+
+
+        }else{
+
+
+            $this->db->where('id_transakcji',$id_transakcji);
+            $data['transakcja'] = $this->db->get('transakcje')->row();
+
+            $data['kontrachenci'] = $this->db->get('kontrachenci')->result();
+
+
+            $this->load->view('main_view');
+            $this->load->view('transakcje_edit_view',$data);
+
+        }
+
+
+    }
+
+
+
+
+    function delete($id_transakcji){
+
+        $this->db->where('id_transakcji', $id_transakcji);
+        $this->db->delete('transakcje');
+
+        echo($id_transakcji);
+
+        //redirect(site_url(''));
+
+
+    }
+
 
 
 
