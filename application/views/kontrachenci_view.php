@@ -12,7 +12,7 @@
             <th>E-mail</th>
             <th>Numer telefonu</th>
             <th>Adres</th>
-            <th></th>
+            <th class="filter-false"></th>
 
         </tr>
         </thead>
@@ -57,7 +57,7 @@
     $(function(){
         $('table').tablesorter({
             theme: 'bootstrap',
-            widgets        : ['zebra', 'columns'],
+            widgets        : ['zebra', 'columns', 'filter'],
             usNumberFormat : false,
             sortReset      : true,
             sortRestart    : true

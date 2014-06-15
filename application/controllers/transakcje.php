@@ -97,9 +97,9 @@ class Transakcje extends CI_Controller {
         $this->db->where('id_transakcji', $id_transakcji);
         $this->db->delete('transakcje');
 
-        echo($id_transakcji);
+        //echo($id_transakcji);
 
-        //redirect(site_url(''));
+        redirect(site_url(''));
 
 
     }

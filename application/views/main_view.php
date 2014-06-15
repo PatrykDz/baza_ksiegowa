@@ -63,7 +63,15 @@
     <div class="sidebar">
 
         <?php
-
+        $atts = array(
+            'width'      => '800',
+            'height'     => '600',
+            'scrollbars' => 'yes',
+            'status'     => 'yes',
+            'resizable'  => 'yes',
+            'screenx'    => '500',
+            'screeny'    => '300'
+        );
 
 
         $list = array(
@@ -72,6 +80,8 @@
             "<hr>",
             anchor(site_url('kontrachenci/view'), '<span class="fa fa-users">'),
             anchor(site_url('kontrachenci/add'), '<span class="fa fa-user">'),
+            "<hr>",
+            anchor_popup(site_url('kontrachenci/view'), '<span class="fa fa-child">',$atts),
         );
 
         $attributes = array(

@@ -81,14 +81,14 @@ class Kontrachenci extends CI_Controller {
 
     function delete($id_kontrachenta){
 
-
+/*
             $this->db->where('id_kontrachenta', $id_kontrachenta);
             $this->db->delete('kontrachenci');
 
             echo("xxx");
             //redirect(site_url('kontrachenci/view'));
 
-
+*/
 
 
 

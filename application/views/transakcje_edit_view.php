@@ -48,7 +48,7 @@
     <div class="form-group">
         <label for="inputPassword">Kontrachent</label>
 
-        <select class="form-control" id="kontrachenci_id_kontrachenta "name="kontrachenci_id_kontrachenta">
+        <select class="form-control" id="kontrachenci_id_kontrachenta" name="kontrachenci_id_kontrachenta">
 
 
             <?php
@@ -57,7 +57,7 @@
 
                 echo($kontrachent->id_kontrachenta);
 
-                <option value="<?php echo($kontrachent->id_kontrachenta); ?> "
+                <option value="<?php echo($kontrachent->id_kontrachenta); ?>"
                     <?php if($transakcja->kontrachenci_id_kontrachenta == $kontrachent->id_kontrachenta){echo "selected";} ?> >
                     <?php echo($kontrachent->imie." ".$kontrachent->nazwisko) ?></option>
 
@@ -71,12 +71,6 @@
 
         </select>
 
-    </div>
-
-
-
-    <div class="checkbox">
-        <label><input type="checkbox" id="nowy_kontrachent"> Nowy kontrachent</label>
     </div>
 
 
@@ -123,7 +117,7 @@
 
 
     <div class="pull-right">
-    <button class="btn btn-danger" href="<?php echo site_url('transakcje/delete')."/".$transakcja->id_transakcji;?>">Usuń</button>
+    <button class="btn btn-danger">Usuń</button>
     <button type="submit" class="btn btn-primary">Zapisz</button>
     </div>
 
@@ -147,6 +141,75 @@
 
             // (sprzezdaż brutto - 1000*0.005) +22,1
         });
+
+
+
+
+
+
+
+
+
+        //DRAG AND DROP TEST
+
+
+
+        $(function(){
+
+            var obj=$('#kontrachenci_id_kontrachenta');
+
+            obj.on('dragover',function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                $(this).css('border',"2px solid #16a085");
+            });
+
+            //drop event listener
+            obj.on('drop',function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                $(this).css('border',"2px dotted #bdc3c7");
+
+
+                //pobiera link z drag and drop
+
+
+                var link = e.originalEvent.dataTransfer.getData('text');
+
+                if(link.indexOf("/baza_ksiegowa/index.php/kontrachenci/edit") > -1){
+
+                    //console.log(link);
+
+                    //upload data using the xhr object
+                    var id = link.split('/').pop();
+
+                    //console.log(id);
+
+                    $(this).val(id);
+
+
+                    //obj.value(id);
+
+                }
+
+
+            });
+
+
+
+
+        }); // EO DRAG AND DROP
+
+
+
+
+
+
+
+
+
+
+
 
     </script>
 
