@@ -50,6 +50,7 @@ class Transakcje extends CI_Controller {
 
 
         $data['kontrachenci'] = $this->db->get('kontrachenci')->result();
+        $data['magazyn'] = $this->db->get('magazyn')->result();
 
         $this->load->view('main_view');
         $this->load->view('transakcje_add_view',$data);
@@ -79,6 +80,7 @@ class Transakcje extends CI_Controller {
             $data['transakcja'] = $this->db->get('transakcje')->row();
 
             $data['kontrachenci'] = $this->db->get('kontrachenci')->result();
+            $data['magazyn'] = $this->db->get('magazyn')->result();
 
 
             $this->load->view('main_view');

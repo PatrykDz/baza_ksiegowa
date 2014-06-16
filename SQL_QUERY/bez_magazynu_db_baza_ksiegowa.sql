@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 16 Cze 2014, 10:28
+-- Generation Time: Jun 14, 2014 at 11:11 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `kontrachenci`
+-- Table structure for table `kontrachenci`
 --
 
 CREATE TABLE IF NOT EXISTS `kontrachenci` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `kontrachenci` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=3 ;
 
 --
--- Zrzut danych tabeli `kontrachenci`
+-- Dumping data for table `kontrachenci`
 --
 
 INSERT INTO `kontrachenci` (`id_kontrachenta`, `imie`, `nazwisko`, `email`, `nr_tel`, `adres`) VALUES
@@ -47,27 +47,7 @@ INSERT INTO `kontrachenci` (`id_kontrachenta`, `imie`, `nazwisko`, `email`, `nr_
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `magazyn`
---
-
-CREATE TABLE IF NOT EXISTS `magazyn` (
-  `id_towaru` int(11) NOT NULL AUTO_INCREMENT,
-  `nazwa` varchar(100) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
-  `cena_netto` decimal(10,0) DEFAULT NULL,
-  PRIMARY KEY (`id_towaru`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Zrzut danych tabeli `magazyn`
---
-
-INSERT INTO `magazyn` (`id_towaru`, `nazwa`, `cena_netto`) VALUES
-(1, 'Acer A300', '1800');
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `transakcje`
+-- Table structure for table `transakcje`
 --
 
 CREATE TABLE IF NOT EXISTS `transakcje` (
@@ -88,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `transakcje` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=7 ;
 
 --
--- Zrzut danych tabeli `transakcje`
+-- Dumping data for table `transakcje`
 --
 
 INSERT INTO `transakcje` (`id_transakcji`, `nazwa_transakcji`, `opis_transakcji`, `zakup_netto`, `zakup_brutto`, `data_zakupu`, `sprzedaz_netto`, `sprzedaz_brutto`, `data_sprzedazy`, `koszty_allegro`, `koszty_inne`, `kontrachenci_id_kontrachenta`) VALUES
@@ -100,7 +80,7 @@ INSERT INTO `transakcje` (`id_transakcji`, `nazwa_transakcji`, `opis_transakcji`
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `wydatki_inne`
+-- Table structure for table `wydatki_inne`
 --
 
 CREATE TABLE IF NOT EXISTS `wydatki_inne` (
@@ -115,11 +95,11 @@ CREATE TABLE IF NOT EXISTS `wydatki_inne` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 --
--- Ograniczenia dla zrzutów tabel
+-- Constraints for dumped tables
 --
 
 --
--- Ograniczenia dla tabeli `transakcje`
+-- Constraints for table `transakcje`
 --
 ALTER TABLE `transakcje`
   ADD CONSTRAINT `fk_transakcje_kontrachenci` FOREIGN KEY (`kontrachenci_id_kontrachenta`) REFERENCES `kontrachenci` (`id_kontrachenta`) ON DELETE NO ACTION ON UPDATE NO ACTION;

@@ -84,7 +84,7 @@
     $(function(){
         $('table').tablesorter({
             theme: 'bootstrap',
-            sortList: [[0,0]],
+            sortList: [[0,1]],
             widgets        : ['zebra', 'columns', 'filter'],
             usNumberFormat : false,
             sortReset      : true,

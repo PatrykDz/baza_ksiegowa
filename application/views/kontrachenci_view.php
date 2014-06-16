@@ -1,4 +1,11 @@
+<script>
 
+    if (window.opener) {
+        //alert('inside a pop-up window or target=_blank window');
+        $(document).attr( "onblur" );
+    }
+
+</script>
 
 <h2 class="sub-header"style="padding-left:10px">Kontrachenci</h2>
 <div class="table-responsive">

@@ -11,14 +11,55 @@
 
 
 
+
+
+
+    <script type='text/javascript'>
+        <?php
+        //dane z php do javascript do pobierania ceny
+        $js_array = json_encode($magazyn);
+        echo "var magazyn = ". $js_array . ";\n";
+        ?>
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="form-group">
-       <input class="form-control" id="nazwa_transakcji" type="hidden" name="id_transakcji"
+       <input class="form-control" id="id_transakcji" type="hidden" name="id_transakcji"
                value="<?php echo $transakcja->id_transakcji ?>">
     </div>
     <div class="form-group">
         <label for="nazwa_transakcji">Nazwa</label>
-        <input class="form-control" id="nazwa_transakcji" name="nazwa_transakcji"
-          value="<?php echo $transakcja->nazwa_transakcji ?>">
+
+        <select class="form-control" id="nazwa_transakcji" name="nazwa_transakcji">
+
+
+            <?php
+            foreach($magazyn as $towar){ ?>
+
+
+                <option value="<?php echo($towar->nazwa);?>"<?php  if($towar->nazwa == $transakcja->nazwa_transakcji)echo("selected"); ?>>
+                    <?php echo($towar->nazwa);?></option>
+
+            <?php  }
+
+            ?>
+
+
+
+
+        </select>
+
+
     </div>
     <div class="form-group">
         <label>Opis transakcji</label>
@@ -127,12 +168,27 @@
 
 
     <script>
+
+
+        $( document ).ready(function() {
+            $( "#nazwa_transakcji").trigger('change');
+            $( "#sprzedaz_netto").trigger('keyup');
+        });
+
+
+
         $( "#zakup_netto" ).keyup(function() {
             $('#zakup_brutto').val($('#zakup_netto').val()*1.23)
         });
 
         $( "#sprzedaz_netto" ).keyup(function() {
-            $('#sprzedaz_brutto').val($('#sprzedaz_netto').val()*1.23)
+            if($(this).val().charAt(0)=="+"){
+                //alert("x");
+            }else{
+
+                $('#sprzedaz_brutto').val($('#sprzedaz_netto').val()*1.23)
+
+            }
         });
 
 
@@ -141,6 +197,55 @@
 
             // (sprzezdaż brutto - 1000*0.005) +22,1
         });
+
+
+
+
+
+
+
+
+
+
+
+
+        $("#nazwa_transakcji" ).change(function() {
+
+            //pobieranie ceny
+
+            var nazwa = $("#nazwa_transakcji").val();
+            var cena_netto = findElement(magazyn,"nazwa",nazwa).cena_netto
+            //$("#nazwa").val());
+
+
+
+
+            $('#zakup_netto').val(cena_netto);
+            $('#zakup_netto').trigger('keyup');
+        });
+
+
+
+
+
+
+        //Funkcja znajdująca wybrany obiekt w tablicy z magazynu
+
+
+        function findElement(arr, propName, propValue) {
+            for (var i=0; i < arr.length; i++)
+                if (arr[i][propName] == propValue)
+                    return arr[i];
+
+            // will return undefined if not found; you could return a default instead
+        }
+
+
+
+
+
+
+
 
 
 
@@ -207,6 +312,25 @@
 
 
 
+        //PROWIZJA Z +
+
+
+        $( "#sprzedaz_netto" ).focusout(function() {
+
+            //pobieranie ceny
+
+            if($(this).val().charAt(0)=="+"){
+                $(this).val( parseFloat($('#zakup_netto').val()) + parseFloat($(this).val().substring(1)));
+                $(this).trigger('keyup');
+            }
+
+        });
+
+        $("#sprzedaz_netto").keypress(function(e) {
+            if(e.which == 13) {
+                $(this).trigger('focusout');
+            }
+        });
 
 
 

@@ -43,24 +43,24 @@ class Kontrachenci extends CI_Controller {
 
 
 
-    function add(){
+               function add(){
 
 
-        if($_POST){
+                if($_POST){
 
-            $this->db->insert('kontrachenci',$_POST);
+                    $this->db->insert('kontrachenci',$_POST);
 
-            redirect(site_url('kontrachenci/view'));
+                    redirect(site_url('kontrachenci/view'));
 
-        }else{
-
-
-        $this->load->view('main_view');
-        $this->load->view('kontrachenci_add_view');
-        $this->load->view('footer_view');
+                }else{
 
 
-        }
+                    $this->load->view('main_view');
+                    $this->load->view('kontrachenci_add_view');
+                    $this->load->view('footer_view');
+
+
+                }
 
    }
 

@@ -65,7 +65,7 @@
         <?php
         $atts = array(
             'width'      => '800',
-            'height'     => '600',
+            'height'     => '650',
             'scrollbars' => 'yes',
             'status'     => 'yes',
             'resizable'  => 'yes',
@@ -81,7 +81,13 @@
             anchor(site_url('kontrachenci/view'), '<span class="fa fa-users">'),
             anchor(site_url('kontrachenci/add'), '<span class="fa fa-user">'),
             "<hr>",
+            anchor('magazyn/view', '<span class="fa fa-cubes"></span>'),
+            anchor('magazyn/add', '<span class="fa fa-cube"></span>'),
+            "<hr>",
             anchor_popup(site_url('kontrachenci/view'), '<span class="fa fa-child">',$atts),
+            anchor_popup(site_url('magazyn/view'), '<span class="fa fa-external-link">',$atts),
+            "<hr>",
+            anchor('statystyki/view', '<span class="fa fa-bar-chart-o"></span>'),
         );
 
         $attributes = array(
@@ -120,7 +126,7 @@
 
 
 
-    <div class="col-sm-9  col-md-10 main" style="padding-left:80px">
+    <div class="main" style="padding-left:80px">
 
 
 

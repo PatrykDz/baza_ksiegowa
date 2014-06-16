@@ -30,9 +30,7 @@ echo form_open('/kontrachenci/add', $attributes); ?>
         <label for="inputPassword">Adres</label>
         <input class="form-control" id="adres" name="adres">
     </div>
-    <div class="checkbox">
-        <label><input type="checkbox"> Remember me</label>
-    </div>
+
     <button type="submit" class="btn btn-primary">Dodaj</button>
 </form>
 
