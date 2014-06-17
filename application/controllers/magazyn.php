@@ -13,6 +13,13 @@ class Magazyn extends CI_Controller {
 
     function view(){
 
+
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
+
+
         $data['magazyn'] = $this->db->get('magazyn')->result();
 
 
@@ -26,6 +33,12 @@ class Magazyn extends CI_Controller {
 
     function add(){
 
+
+
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
 
         if($_POST){
 
@@ -52,6 +65,12 @@ class Magazyn extends CI_Controller {
     function edit($id_towaru){
 
 
+
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
+
         if($_POST){
 
 
@@ -73,6 +92,31 @@ class Magazyn extends CI_Controller {
             $this->load->view('magazyn_edit_view',$data);
 
         }
+
+    }
+
+
+
+
+
+    function delete($id_towaru){
+
+
+
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
+
+
+
+        $this->db->where('id_towaru', $id_towaru);
+        $this->db->delete('magazyn');
+
+        //echo($id_transakcji);
+
+        redirect(site_url(''));
+
 
     }
 

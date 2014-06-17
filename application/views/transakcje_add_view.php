@@ -15,7 +15,7 @@
     <script type='text/javascript'>
         <?php
         //dane z php do javascript do pobierania ceny
-        $js_array = json_encode($magazyn);
+        $js_array = json_encode($magazyn,JSON_UNESCAPED_UNICODE);
         echo "var magazyn = ". $js_array . ";\n";
         ?>
     </script>

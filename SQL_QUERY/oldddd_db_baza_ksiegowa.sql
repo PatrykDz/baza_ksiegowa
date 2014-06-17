@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 17 Cze 2014, 16:04
+-- Generation Time: 16 Cze 2014, 10:28
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `kontrachenci` (
   `nr_tel` varchar(45) COLLATE utf8_polish_ci DEFAULT NULL,
   `adres` varchar(80) COLLATE utf8_polish_ci DEFAULT NULL,
   PRIMARY KEY (`id_kontrachenta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=3 ;
 
 --
 -- Zrzut danych tabeli `kontrachenci`
@@ -42,9 +42,7 @@ CREATE TABLE IF NOT EXISTS `kontrachenci` (
 
 INSERT INTO `kontrachenci` (`id_kontrachenta`, `imie`, `nazwisko`, `email`, `nr_tel`, `adres`) VALUES
 (1, 'Jan', 'Kowalski', 'kowalski@wp.pl', '123456789', 'Toruń, ul. Nowa 14'),
-(2, 'Marek', 'Nowak', 'nowak@gmail.com', '123456789', 'Toruń, ul. Stara 14'),
-(3, 'Dawid', 'Dziarnecki', 'dziarnecki@gmail.com', '458757864', 'Kucborek 17'),
-(4, 'Andrzej', 'Gac', 'gac@wp.pl', '457981327', 'Toruń, ul. Polna 44a');
+(2, 'Marek', 'Nowak', 'nowak@gmail.com', '123456789', 'Toruń, ul. Stara 14');
 
 -- --------------------------------------------------------
 
@@ -57,17 +55,14 @@ CREATE TABLE IF NOT EXISTS `magazyn` (
   `nazwa` varchar(100) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
   `cena_netto` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`id_towaru`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Zrzut danych tabeli `magazyn`
 --
 
 INSERT INTO `magazyn` (`id_towaru`, `nazwa`, `cena_netto`) VALUES
-(1, 'Acer A300', '1800'),
-(2, 'Acer B800', '500'),
-(3, 'Belinea ProBook', '200'),
-(4, 'HP ProBook 4720s', '5000');
+(1, 'Acer A300', '1800');
 
 -- --------------------------------------------------------
 
@@ -90,44 +85,17 @@ CREATE TABLE IF NOT EXISTS `transakcje` (
   `kontrachenci_id_kontrachenta` int(11) NOT NULL,
   PRIMARY KEY (`id_transakcji`),
   KEY `fk_transakcje_kontrachenci_idx` (`kontrachenci_id_kontrachenta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=7 ;
 
 --
 -- Zrzut danych tabeli `transakcje`
 --
 
 INSERT INTO `transakcje` (`id_transakcji`, `nazwa_transakcji`, `opis_transakcji`, `zakup_netto`, `zakup_brutto`, `data_zakupu`, `sprzedaz_netto`, `sprzedaz_brutto`, `data_sprzedazy`, `koszty_allegro`, `koszty_inne`, `kontrachenci_id_kontrachenta`) VALUES
-(7, 'HP ProBook 4720s', '', '1200.00', '1476.00', '2014-06-09', '1600.00', '1968.00', '2014-06-16', '26.94', '0.00', 1),
-(9, 'Acer B800', 'OK', '500.00', '615.00', '2014-06-16', '700.00', '861.00', '2014-06-17', '21.41', '10.00', 2),
-(10, 'Belinea ProBook', '', '200.00', '246.00', '2014-06-16', '300.00', '369.00', '2014-06-16', '18.95', '0.00', 1),
-(11, 'Acer B800', 'Działa ok', '500.00', '615.00', '2014-06-15', '800.00', '861.00', '0000-00-00', '22.02', '0.00', 1),
-(12, 'Belinea ProBook', '', '200.00', '246.00', '0000-00-00', '400.00', '492.00', '2014-06-10', '19.56', '0.00', 1),
-(13, 'Acer B800', 'xxxxxxx', '500.00', '615.00', '2014-06-14', '900.00', '1107.00', '2014-06-16', '22.64', '0.00', 2),
-(15, 'Acer A300', 'dccccccccccc', '1800.00', '2214.00', '0000-00-00', '800.00', '984.00', '0000-00-00', '22.02', '0.00', 3),
-(20, 'Acer B800', '', '500.00', '615.00', '2014-06-16', '600.00', '738.00', '2014-06-14', '20.79', '0.00', 1),
-(21, 'Acer A300', '', '1800.00', '2214.00', '0000-00-00', '1810.00', '2226.30', '0000-00-00', '28.23', '0.00', 3),
-(22, 'Acer A300', '', '1800.00', '2214.00', '2014-06-16', '2000.00', '2460.00', '2014-06-17', '29.40', '10.00', 3),
-(23, 'Acer B800', 'działa', '500.00', '615.00', '2014-06-09', '510.00', '627.30', '0000-00-00', '20.24', '10.00', 2);
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `users`
---
-
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) COLLATE utf8_polish_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_polish_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=3 ;
-
---
--- Zrzut danych tabeli `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(2, 'admin', 'b0ae616aabf4f6986012aae4b1ec6621');
+(1, 'Laptop HP ProBook 1425', 'Nowy kupiony i sprzedany', '800.00', '1000.00', '2014-06-15', '1000.00', '1200.00', '2014-06-14', '5.00', '5.00', 1),
+(2, 'Laptop Dell 1422', 'OK', '1000.00', '1200.00', '2014-06-15', '800.00', '1000.00', '2014-06-17', '5.00', '1.00', 2),
+(4, 'Laptop DELL Z500', 'Lekko uszkodzony', '1000.00', NULL, '2014-01-01', '1200.00', NULL, '2014-01-02', NULL, '5.00', 1),
+(6, 'DELL BBB88', 'OK', '800.00', '984.00', '2014-01-01', '1200.00', '1476.00', '2014-01-02', '24.00', '10.00', 1);
 
 -- --------------------------------------------------------
 

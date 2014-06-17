@@ -14,6 +14,10 @@ class Transakcje extends CI_Controller {
     public function index(){
 
 
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
 
 
        // $data['query'] = $this->transakcjamodel->get_last();
@@ -35,6 +39,13 @@ class Transakcje extends CI_Controller {
 
 
     function add(){
+
+
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
+
 
         if($_POST){
 
@@ -63,6 +74,14 @@ class Transakcje extends CI_Controller {
 
 
     function edit($id_transakcji){
+
+
+
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
+
 
         if($_POST){
 
@@ -95,6 +114,15 @@ class Transakcje extends CI_Controller {
 
 
     function delete($id_transakcji){
+
+
+
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
+
+
 
         $this->db->where('id_transakcji', $id_transakcji);
         $this->db->delete('transakcje');

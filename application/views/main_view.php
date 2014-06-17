@@ -1,18 +1,24 @@
 <html lang="pl">
 <meta charset="utf-8" />
 <head>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+   <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"> -->
+     <link href="<?php echo(base_url().'assets/bootstrap-3.1.1/css/')?>bootstrap.min.css" rel="stylesheet">
+    <script src="<?php echo(base_url().'assets/bootstrap-3.1.1/js/')?>bootstrap.min.js"></script>
+    <script src="<?php echo(base_url().'assets/js/')?>jquery.min.js"></script>
 
 
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+    <link href="<?php echo(base_url().'assets/font-awesome-4.1.0/css/')?>font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo(base_url().'assets/css/')?>dashboard.css" rel="stylesheet">
 
 
     <link href="<?php echo(base_url().'assets/tablesorter/')?>css/theme.bootstrap.css" rel="stylesheet">
     <script src="<?php echo(base_url().'assets/tablesorter/')?>js/jquery.tablesorter.min.js"></script>
     <script src="<?php echo(base_url().'assets/tablesorter/')?>js/jquery.tablesorter.widgets.min.js"></script>
+
+    <script src="<?php echo(base_url().'assets/tablesorter/')?>addons/pager/jquery.tablesorter.pager.min.js"></script>
+
+
+
 
 
 
@@ -29,7 +35,7 @@
 
 
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -41,12 +47,12 @@
             <a class="navbar-brand" href="#">Soma System - Baza</a>
         </div>
         <div class="navbar-collapse collapse">
-         <!--   <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Help</a></li>
+           <ul class="nav navbar-nav navbar-right">
+                <li style="padding-right:15px"><a href="<?php echo site_url('login/logout');?>">Wyloguj</a></li>
+
             </ul>
+
+            <!--
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search...">
             </form>

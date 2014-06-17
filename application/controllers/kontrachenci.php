@@ -15,6 +15,10 @@ class Kontrachenci extends CI_Controller {
     function edit($id_kontrachenta){
 
 
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
 
         if($_POST){
 
@@ -45,6 +49,11 @@ class Kontrachenci extends CI_Controller {
 
                function add(){
 
+                   if(!$this->session->userdata('logged_in')){
+
+                       redirect('login', 'refresh');
+                   }
+
 
                 if($_POST){
 
@@ -66,6 +75,14 @@ class Kontrachenci extends CI_Controller {
 
     function view(){
 
+
+
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
+
+
     $data['kontrachenci'] = $this->db->get('kontrachenci')->result();
 
 
@@ -81,6 +98,10 @@ class Kontrachenci extends CI_Controller {
 
     function delete($id_kontrachenta){
 
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
 /*
             $this->db->where('id_kontrachenta', $id_kontrachenta);
             $this->db->delete('kontrachenci');

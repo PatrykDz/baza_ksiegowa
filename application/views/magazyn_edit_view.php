@@ -27,7 +27,7 @@
                value="<?php echo $magazyn->cena_netto; ?>">
     </div>
 
-    <!--<button class="btn btn-danger" href="<?php echo site_url('kontrachenci/delete/')."/".$kontrachent->id_kontrachenta;?>">Usuń</button> -->
+    <?php echo anchor(site_url('magazyn/delete'."/".$magazyn->id_towaru),'Usuń', array('class' => 'btn btn-danger')); ?>
     <button type="submit" class="btn btn-primary">Zapisz</button>
     </div>
 

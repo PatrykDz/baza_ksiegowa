@@ -14,8 +14,19 @@ class Statystyki extends CI_Controller {
 
 
      function view(){
+
+
+         if(!$this->session->userdata('logged_in')){
+
+             redirect('login', 'refresh');
+         }
+
+
+
+         $data['transakcje'] = $this->transakcje_model->get_transakcje();
+
         $this->load->view('main_view');
-        $this->load->view('statystyki_view');
+        $this->load->view('statystyki_view',$data);
 
 
 
@@ -24,6 +35,13 @@ class Statystyki extends CI_Controller {
 
 
     function excel_view($path){
+
+
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
+
         $this->load->view('main_view');
         $this->load->view('statystyki_view');
 
@@ -43,7 +61,14 @@ class Statystyki extends CI_Controller {
 
     function excel_export(){
 
-        $row_counter = 1;
+
+        if(!$this->session->userdata('logged_in')){
+
+            redirect('login', 'refresh');
+        }
+
+
+
 
         $data['kontrachenci'] = $this->db->get('kontrachenci')->result();
         $data['transakcje'] = $this->transakcje_model->get_transakcje();
@@ -57,15 +82,18 @@ class Statystyki extends CI_Controller {
 
         // Create new PHPExcel object
 
+        $row_counter = 1;
+
+
         $objPHPExcel = new PHPExcel();
 
         // Set properties
 
-        $objPHPExcel->getProperties()->setCreator("Maarten Balliauw");
-        $objPHPExcel->getProperties()->setLastModifiedBy("Maarten Balliauw");
-        $objPHPExcel->getProperties()->setTitle("Office 2007 XLSX Test Document");
-        $objPHPExcel->getProperties()->setSubject("Office 2007 XLSX Test Document");
-        $objPHPExcel->getProperties()->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.");
+        $objPHPExcel->getProperties()->setCreator("Soma System Baza Księgowa");
+        $objPHPExcel->getProperties()->setLastModifiedBy("Soma System");
+        $objPHPExcel->getProperties()->setTitle("Soma System - ".date('j-n-Y'));
+        $objPHPExcel->getProperties()->setSubject("Raport ".date('j-n-Y'));
+        $objPHPExcel->getProperties()->setDescription("Raport transakcji, kontrachentów, i magazynu z dnia ".date('j-n-Y'));
 
 
         // Transakcje
@@ -159,18 +187,128 @@ $row_counter++;
 
 
 
-
-
-
-
-
-
         // Rename sheet
 
         $objPHPExcel->getActiveSheet()->setTitle('Transakcje');
 
 
-        // Save Excel 2007 file
+
+
+
+        //Kontrachenci
+
+
+        $objPHPExcel->createSheet(NULL, 1);
+        $objPHPExcel->setActiveSheetIndex(1);
+
+
+
+
+
+        $objPHPExcel->getActiveSheet()->getStyle('A1:F1')->getFill()
+            ->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+            ->getStartColor()->setARGB('FFE8E5E5');
+
+        $objPHPExcel->getActiveSheet()->getStyle('A1:F1')->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THICK);
+
+
+        foreach(range('A','F') as $columnID) {
+            $objPHPExcel->getActiveSheet()->getColumnDimension($columnID)
+                ->setAutoSize(true);
+        }
+
+
+
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1',"ID");
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1',"Imię");
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1',"Nazwisko");
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1',"E-Mail");
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1',"Nr tel");
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1',"Adres");
+
+
+        $row_counter=1;
+
+        foreach($data['kontrachenci'] as $row) {
+
+            $row_counter++;
+
+
+            $objPHPExcel->getActiveSheet()->SetCellValue('A'.$row_counter, $row->id_kontrachenta);
+            $objPHPExcel->getActiveSheet()->SetCellValue('B'.$row_counter, $row->imie);
+            $objPHPExcel->getActiveSheet()->SetCellValue('C'.$row_counter, $row->nazwisko);
+            $objPHPExcel->getActiveSheet()->SetCellValue('D'.$row_counter, $row->email);
+            $objPHPExcel->getActiveSheet()->SetCellValue('E'.$row_counter, $row->nr_tel);
+            $objPHPExcel->getActiveSheet()->SetCellValue('F'.$row_counter, $row->adres);
+
+        }
+
+
+
+        $objPHPExcel->getActiveSheet()->setTitle('Kontrachenci');
+
+
+
+
+        //Magazyn
+
+
+        $objPHPExcel->createSheet(NULL, 2);
+        $objPHPExcel->setActiveSheetIndex(2);
+
+
+
+        $objPHPExcel->getActiveSheet()->getStyle('A1:C1')->getFill()
+            ->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+            ->getStartColor()->setARGB('FFE8E5E5');
+
+        $objPHPExcel->getActiveSheet()->getStyle('A1:C1')->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THICK);
+
+
+        foreach(range('A','C') as $columnID) {
+            $objPHPExcel->getActiveSheet()->getColumnDimension($columnID)
+                ->setAutoSize(true);
+        }
+
+
+
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1',"ID");
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1',"Nazwa");
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1',"Cena netto");
+
+
+
+        $row_counter=1;
+
+        foreach($data['magazyn'] as $row) {
+
+            $row_counter++;
+
+
+            $objPHPExcel->getActiveSheet()->SetCellValue('A'.$row_counter, $row->id_towaru);
+            $objPHPExcel->getActiveSheet()->SetCellValue('B'.$row_counter, $row->nazwa);
+            $objPHPExcel->getActiveSheet()->SetCellValue('C'.$row_counter, $row->cena_netto);
+
+
+        }
+
+
+        $objPHPExcel->getActiveSheet()->setTitle('Magazyn');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // Save Excel 2003 file
 
         $filename = date('j-n-Y').'.xls';
 

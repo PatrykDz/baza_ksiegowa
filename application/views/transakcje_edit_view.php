@@ -17,7 +17,7 @@
     <script type='text/javascript'>
         <?php
         //dane z php do javascript do pobierania ceny
-        $js_array = json_encode($magazyn);
+        $js_array = json_encode($magazyn,JSON_UNESCAPED_UNICODE);
         echo "var magazyn = ". $js_array . ";\n";
         ?>
     </script>
@@ -158,7 +158,7 @@
 
 
     <div class="pull-right">
-    <button class="btn btn-danger">Usuń</button>
+    <?php echo anchor(site_url('transakcje/delete'."/".$transakcja->id_transakcji),'Usuń', array('class' => 'btn btn-danger')); ?>
     <button type="submit" class="btn btn-primary">Zapisz</button>
     </div>
 
